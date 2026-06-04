@@ -4,8 +4,7 @@ from database import supabase
 st.title("Tableau de bord")
 
 #Recuperation de toutes les données
-nouveaux = supabase.table("nouveaux").select("*").execute()
-data = nouveaux.data
+data = supabase.table("nouveaux").select("*").execute().data
 
 #filtre le nombre par statut
 total = len(data)
