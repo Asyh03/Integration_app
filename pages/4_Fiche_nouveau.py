@@ -37,3 +37,37 @@ else :
             supabase.table("nouveaux").update({"statut": nouveau_statut}).eq("id", personne["id"]).execute()
             st.success("Statut mis à jour ! ✅")
             st.rerun()
+    st.divider()
+
+    #Historique des suivis
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.subheader("Ajouter une action")
+
+        with st.form("ajouter_suivi") :
+            type_action = st.selectbox("Type d'action",["appel","message","invitation","presence"])
+            commentaire = st.text_area("Commentaire")
+            soumettre = st.form_submit_button("Enregistrer")
+
+            if soumettre :
+                supabase.table("suivis").insert({
+                    "nouveau_id": personne["id"],
+                    "type_action": type_action,
+                    "commentaire": commentaire
+                }).execute()
+                st.success("Action enregistrée")
+                st.rerun()
+    with col2 :
+        st.subheader("Historique")
+
+        suivis = supabase.table("suivis").select("*").eq("nouveau_id", personne["id"]).order("date_action",desc=True).execute().data
+
+        if suivis :
+            for s in suivis :
+                st.write(f"**{s['type_action'].upper()}** - {s['date_action'][:10]}")
+                st.caption(s['commentaire'])
+                st.divider()
+
+        else :
+            st.info("Aucune action enregistrée.")
