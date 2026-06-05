@@ -25,7 +25,7 @@ if data :
             "nom": "Nom",
             "prenom" : "Prénom", 
             "telephone": "Téléphone",
-            "tranche_age" :"Tranche d'Age",
+            "tranche_age" :"Tranche d'âge",
             "date_de_visite": "Date de visite",
             "invite_par" : "Comment as-tu connu ICC",
 
