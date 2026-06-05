@@ -71,3 +71,24 @@ else :
 
         else :
             st.info("Aucune action enregistrée.")
+
+    st.divider()
+
+    # Supprimer la personne
+    if st.button("🗑️ Supprimer cette personne", type="secondary"):
+        st.warning("Es-tu sûr de vouloir supprimer cette personne ?")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            if st.button("✅ Oui, supprimer", type="primary"):
+                # Supprimer d'abord les suivis liés
+                supabase.table("suivis").delete().eq("nouveau_id", personne["id"]).execute()
+                # Ensuite supprimer la personne
+                supabase.table("nouveaux").delete().eq("id", personne["id"]).execute()
+                st.success("Personne supprimée ! ✅")
+                st.rerun()
+        
+        with col2:
+            if st.button("❌ Annuler"):
+                st.rerun()
