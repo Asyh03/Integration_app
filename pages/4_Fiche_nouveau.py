@@ -91,4 +91,8 @@ else :
         
         with col2:
             if st.button("❌ Annuler"):
+<<<<<<< HEAD
                 st.rerun()
+=======
+                st.rerun()
+>>>>>>> 451cf09 (Ajout de la suppression d'un nouveau à la Fiche de nouveau)
