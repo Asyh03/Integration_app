@@ -161,13 +161,6 @@ L'agent peut répondre à des questions en langage naturel comme :
 
 ---
 
-## 👨‍💻 Auteur
-
-Projet réalisé par **Samuel AHETO** — Étudiant L2 Informatique  
-Projet personnel
-
----
-
 ## 📄 Licence
 
 Ce projet est open source et libre d'utilisation.
