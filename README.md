@@ -1,12 +1,13 @@
 # ⛪ Système d'Intégration des Nouveaux Membres
 
-Application web full-stack avec agent IA pour aider les églises ou entreprises à suivre et accompagner l'intégration de leurs nouveaux membres.
+Application web full-stack avec agent IA pour aider les églises à suivre et accompagner l'intégration de leurs nouveaux membres.
 
 ---
 
 ## 🚀 Fonctionnalités
 
-- **Multi-église** — chaque structure a son propre espace sécurisé avec ses données isolées
+- **Multi-église** — chaque église a son propre espace sécurisé avec ses données isolées
+- **Inscription** — chaque église peut créer son compte directement depuis l'app
 - **Tableau de bord** — compteurs en temps réel par statut (Nouveau, Contacté, Intégré...)
 - **Gestion des nouveaux** — ajout, fiche individuelle, changement de statut, suppression
 - **Gestion des responsables** — attribution d'un responsable à chaque nouveau membre
@@ -38,7 +39,7 @@ integration_app/
 ├── requirements.txt           # Dépendances Python
 ├── .env                       # Variables d'environnement (non versionné)
 └── pages/
-    ├── 0_Connexion.py         # Page de connexion
+    ├── 0_Connexion.py         # Page de connexion et inscription
     ├── 1_Tableau_de_bord.py   # Dashboard
     ├── 2_Liste_des_nouveaux.py
     ├── 3_Ajouter_nouveau.py
@@ -158,7 +159,6 @@ L'agent peut répondre à des questions en langage naturel comme :
 - *"Combien de personnes sont intégrées ?"*
 - *"Génère un message de suivi pour Kofi Mensah"*
 - *"Donne-moi un résumé de l'intégration ce mois-ci"*
-
 ---
 
 ## 📄 Licence
