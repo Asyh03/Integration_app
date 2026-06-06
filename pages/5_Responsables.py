@@ -1,10 +1,16 @@
 import streamlit as st
 from database import supabase
 
+# Vérifier si connecté
+if "eglise" not in st.session_state:
+    st.switch_page("pages/0_Connexion.py")
+
+eglise_id = st.session_state.eglise["id"]
+
 st.title("Gestion des responsables")
 
 #Récuperation des données
-responsables = supabase.table("responsables").select("*").execute().data
+responsables = supabase.table("responsables").select("*").eq("eglise_id", eglise_id).execute().data
 
 #afficher la liste
 

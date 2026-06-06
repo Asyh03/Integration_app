@@ -1,6 +1,12 @@
 import streamlit as st 
 from database import supabase
 
+#Vérifier si connecté
+if "eglise" not in st.session_state :
+    st.switch_page("pages/0_connexion.py")
+
+eglise_id = st.session_state.eglise["id"]
+
 st.title("Tableau de bord")
 
 #Recuperation de toutes les données

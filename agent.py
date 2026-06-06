@@ -7,27 +7,20 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-# ── OUTILS QUE L'AGENT PEUT UTILISER ──
-def lire_nouveaux():
-    data = supabase.table("nouveaux").select("*").execute().data
-    return data
+def lire_nouveaux(eglise_id):
+    return supabase.table("nouveaux").select("*").eq("eglise_id", eglise_id).execute().data
 
-def compter_par_statut():
-    data = supabase.table("nouveaux").select("*").execute().data
+def compter_par_statut(eglise_id):
+    data = lire_nouveaux(eglise_id)
     compteurs = {}
     for n in data:
         statut = n["statut"]
         compteurs[statut] = compteurs.get(statut, 0) + 1
     return compteurs
 
-def lire_suivis(nouveau_id):
-    data = supabase.table("suivis").select("*").eq("nouveau_id", nouveau_id).execute().data
-    return data
-
-# ── FONCTION PRINCIPALE DE L'AGENT ──
-def poser_question(question, historique=[]):
-    nouveaux = lire_nouveaux()
-    statistiques = compter_par_statut()
+def poser_question(question, historique=[], eglise_id=None):
+    nouveaux = lire_nouveaux(eglise_id)
+    statistiques = compter_par_statut(eglise_id)
 
     system_prompt = f"""Tu es un assistant intelligent qui aide les responsables d'une église
 à suivre l'intégration des nouveaux membres.
